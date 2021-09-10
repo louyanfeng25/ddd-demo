@@ -32,7 +32,6 @@ spring:
           config:
             comment-allow: true
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-      aop-patterns: com.dbappsecurity.bulletinwarning.service.service.*
       web-stat-filter:
         enabled: true
         url-pattern: /*
