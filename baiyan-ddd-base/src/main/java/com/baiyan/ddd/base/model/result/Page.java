@@ -1,7 +1,6 @@
 package com.baiyan.ddd.base.model.result;
 
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -41,7 +40,6 @@ public class Page<T> extends com.baomidou.mybatisplus.extension.plugins.paginati
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public long getCurrent() {
         return super.getCurrent();
     }
@@ -54,7 +52,6 @@ public class Page<T> extends com.baomidou.mybatisplus.extension.plugins.paginati
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public long getSize() {
         return super.getSize();
     }
@@ -67,13 +64,11 @@ public class Page<T> extends com.baomidou.mybatisplus.extension.plugins.paginati
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public List<OrderItem> getOrders() {
         return super.getOrders();
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public boolean isSearchCount() {
         return super.isSearchCount();
     }

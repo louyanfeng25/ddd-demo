@@ -3,7 +3,6 @@ package com.baiyan.ddd.base.model.query;
 import cn.hutool.core.util.StrUtil;
 import com.baiyan.ddd.base.model.result.Page;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -85,19 +84,16 @@ public class PageQuery extends Page {
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public List getRecords() {
         return super.getRecords();
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public long getSize() {
         return super.getSize();
     }
 
     @Override
-    @ApiModelProperty(hidden = true)
     public long getTotal() {
         return super.getTotal();
     }
