@@ -75,10 +75,4 @@ public class UserApplicationServiceImpl implements UserApplicationService {
         domainEventPublisher.publishEvent(new UserDeleteEvent(id));
     }
 
-
-    @Override
-    public User select(Long id){
-        return userRepository.byId(id);
-    }
-
 }

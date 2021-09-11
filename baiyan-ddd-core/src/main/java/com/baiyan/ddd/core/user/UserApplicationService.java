@@ -32,12 +32,4 @@ public interface UserApplicationService extends ApplicationService {
      */
     void delete(Long id);
 
-
-    /**
-     * 查询用户
-     *
-     * @param id
-     * @return
-     */
-    User select(Long id);
 }
