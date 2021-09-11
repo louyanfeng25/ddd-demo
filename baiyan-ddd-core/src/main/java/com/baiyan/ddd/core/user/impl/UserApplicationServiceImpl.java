@@ -14,6 +14,7 @@ import com.baiyan.ddd.core.user.event.UserUpdateEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
@@ -38,6 +39,7 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     UserDomainService userDomainService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void create(CreateUserCommand command){
         //工厂创建用户
         User user = new User(command);
@@ -50,6 +52,7 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void update(UpdateUserCommand command){
         //先校验用户是否存在【应用服务仅允许此种判断，抛出错误情况，即为参数校验，不允许实际业务逻辑处理】
         ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(command.getUserId())),"user.is.not.exist");
@@ -64,6 +67,7 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Long id){
         //根据用户id删除用户聚合
         userRepository.delete(id);
