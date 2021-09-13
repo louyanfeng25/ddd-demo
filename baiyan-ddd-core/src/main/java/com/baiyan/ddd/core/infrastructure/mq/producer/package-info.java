@@ -1,5 +1,5 @@
 /**
- * mq生产者
+ * mq生产者工具类
  *
  * @author baiyan
  */

@@ -5,11 +5,11 @@ import com.baiyan.ddd.base.model.result.BaseResult;
 import com.baiyan.ddd.base.model.result.Page;
 import com.baiyan.ddd.base.model.result.PageResult;
 import com.baiyan.ddd.base.model.result.Result;
-import com.baiyan.ddd.core.infrastructure.query.dto.UserPageDTO;
-import com.baiyan.ddd.core.user.UserApplicationService;
-import com.baiyan.ddd.core.user.UserQueryRepository;
-import com.baiyan.ddd.core.user.command.CreateUserCommand;
-import com.baiyan.ddd.core.user.command.UpdateUserCommand;
+import com.baiyan.ddd.core.user.application.model.command.CreateUserCommand;
+import com.baiyan.ddd.core.user.application.model.command.UpdateUserCommand;
+import com.baiyan.ddd.core.user.application.model.dto.UserPageDTO;
+import com.baiyan.ddd.core.user.application.repository.UserQueryRepository;
+import com.baiyan.ddd.core.user.application.service.UserApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
