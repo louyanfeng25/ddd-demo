@@ -8,232 +8,118 @@
 
 > 博客中贴图的代码结构与本demo略有出路，根据实际业务与合理性考虑，对结构做了修正，以demo为准。
 
-# 二.系列博客
+# 二.DDD系列博客
 
-[一文带你落地DDD](https://juejin.cn/post/7004002483601145863)
+1.  [一文带你落地DDD](https://juejin.cn/post/7004002483601145863)
+2.  [DDD落地之事件驱动模型](https://juejin.cn/post/7005175434555949092)
+3.  [DDD落地之仓储](https://juejin.cn/post/7006595886646034463)
+4.  [DDD落地之架构分层](https://juejin.cn/post/7007382308667785253)
 
-[DDD落地之事件驱动模型](https://juejin.cn/post/7005175434555949092)	
+# 三.为什么我们要使用DDD
 
-# 三.包结构
+虽然我在第一篇DDD的系列文：[一文带你落地DDD](https://juejin.cn/post/7004002483601145863)中已经做过介绍我们使用DDD的理由。但是对于业务架构不太熟悉的同学还是无法get到DDD的优势是什么。
 
-```
-.
-├── README.md
-├── baiyan-ddd-api
-│   ├── baiyan-ddd-api.iml
-│   ├── pom.xml
-│   └── src
-│       └── main
-│           └── java
-│               └── com
-│                   └── baiyan
-│                       └── ddd
-│                           └── api
-│                               └── package-info.java
-├── baiyan-ddd-base
-│   ├── baiyan-ddd-base.iml
-│   ├── pom.xml
-│   └── src
-│       └── main
-│           └── java
-│               └── com
-│                   └── baiyan
-│                       └── ddd
-│                           └── base
-│                               ├── exception
-│                               │   ├── ServiceException.java
-│                               │   └── ValidationException.java
-│                               ├── model
-│                               │   ├── ddd
-│                               │   │   ├── Adapter.java
-│                               │   │   ├── AggregateRoot.java
-│                               │   │   ├── ApplicationService.java
-│                               │   │   ├── Command.java
-│                               │   │   ├── DomainService.java
-│                               │   │   ├── Entity.java
-│                               │   │   ├── Factory.java
-│                               │   │   ├── Interface.java
-│                               │   │   ├── MarkerInterface.java
-│                               │   │   ├── QueryApplicationService.java
-│                               │   │   ├── Repository.java
-│                               │   │   ├── Representation.java
-│                               │   │   └── ValueObject.java
-│                               │   ├── event
-│                               │   │   └── BaseDomainEvent.java
-│                               │   ├── query
-│                               │   │   ├── KeywordQuery.java
-│                               │   │   └── PageQuery.java
-│                               │   └── result
-│                               │       ├── BaseResult.java
-│                               │       ├── BaseUuidEntity.java
-│                               │       ├── Page.java
-│                               │       ├── PageResult.java
-│                               │       └── Result.java
-│                               ├── package-info.java
-│                               └── util
-│                                   ├── GsonUtil.java
-│                                   └── ValidationUtil.java
-├── baiyan-ddd-core
-│   ├── baiyan-ddd-core.iml
-│   ├── pom.xml
-│   └── src
-│       └── main
-│           ├── java
-│           │   └── com
-│           │       └── baiyan
-│           │           └── ddd
-│           │               └── core
-│           │                   ├── infrastructure
-│           │                   │   ├── adapter
-│           │                   │   │   ├── UnitAdapter.java
-│           │                   │   │   ├── impl
-│           │                   │   │   │   └── UnitAdapterImpl.java
-│           │                   │   │   ├── model
-│           │                   │   │   │   ├── UnitDTO.java
-│           │                   │   │   │   └── package-info.java
-│           │                   │   │   └── package-info.java
-│           │                   │   ├── common
-│           │                   │   │   ├── config
-│           │                   │   │   │   ├── SpringMessageSourceErrorMessageSource.java
-│           │                   │   │   │   └── package-info.java
-│           │                   │   │   └── event
-│           │                   │   │       ├── DomainEventPublisher.java
-│           │                   │   │       └── DomainEventPublisherImpl.java
-│           │                   │   ├── constant
-│           │                   │   │   └── package-info.java
-│           │                   │   ├── event
-│           │                   │   │   └── package-info.java
-│           │                   │   ├── interfaces
-│           │                   │   │   ├── UserInterfaceImpl.java
-│           │                   │   │   └── package-info.java
-│           │                   │   ├── mq
-│           │                   │   │   └── producer
-│           │                   │   │       └── package-info.java
-│           │                   │   ├── repository
-│           │                   │   │   ├── UserQueryRepositoryImpl.java
-│           │                   │   │   ├── UserRepositoryImpl.java
-│           │                   │   │   ├── converter
-│           │                   │   │   │   ├── UserConverter.java
-│           │                   │   │   │   └── package-info.java
-│           │                   │   │   ├── mapper
-│           │                   │   │   │   ├── RoleMapper.java
-│           │                   │   │   │   ├── UserMapper.java
-│           │                   │   │   │   ├── UserRoleMapper.java
-│           │                   │   │   │   └── package-info.java
-│           │                   │   │   ├── package-info.java
-│           │                   │   │   └── po
-│           │                   │   │       ├── RolePO.java
-│           │                   │   │       ├── UserPO.java
-│           │                   │   │       ├── UserRolePO.java
-│           │                   │   │       └── package-info.java
-│           │                   │   └── rpc
-│           │                   │       ├── UnitApi.java
-│           │                   │       ├── UnitInfoDTO.java
-│           │                   │       └── package-info.java
-│           │                   └── user
-│           │                       ├── application
-│           │                       │   ├── assember
-│           │                       │   │   └── package-info.java
-│           │                       │   ├── listener
-│           │                       │   │   ├── UserEventHandler.java
-│           │                       │   │   └── package-info.java
-│           │                       │   ├── model
-│           │                       │   │   ├── command
-│           │                       │   │   │   ├── BaseUserCommand.java
-│           │                       │   │   │   ├── CreateUserCommand.java
-│           │                       │   │   │   ├── UpdateUserCommand.java
-│           │                       │   │   │   └── package-info.java
-│           │                       │   │   ├── dto
-│           │                       │   │   │   ├── UserPageDTO.java
-│           │                       │   │   │   └── package-info.java
-│           │                       │   │   └── query
-│           │                       │   │       └── package-info.java
-│           │                       │   ├── repository
-│           │                       │   │   └── UserQueryRepository.java
-│           │                       │   └── service
-│           │                       │       ├── UserApplicationService.java
-│           │                       │       ├── UserQueryApplicationService.java
-│           │                       │       └── impl
-│           │                       │           └── UserApplicationServiceImpl.java
-│           │                       ├── domain
-│           │                       │   ├── event
-│           │                       │   │   ├── UserCreateEvent.java
-│           │                       │   │   ├── UserDeleteEvent.java
-│           │                       │   │   ├── UserUpdateEvent.java
-│           │                       │   │   └── package-info.java
-│           │                       │   ├── factory
-│           │                       │   │   ├── UserFactory.java
-│           │                       │   │   └── package-info.java
-│           │                       │   ├── model
-│           │                       │   │   ├── Address.java
-│           │                       │   │   ├── Role.java
-│           │                       │   │   ├── Unit.java
-│           │                       │   │   └── User.java
-│           │                       │   ├── repository
-│           │                       │   │   └── UserRepository.java
-│           │                       │   └── service
-│           │                       │       ├── UserDomainService.java
-│           │                       │       └── impl
-│           │                       │           └── UserDomainServiceImpl.java
-│           │                       ├── exception
-│           │                       │   └── package-info.java
-│           │                       ├── interfaces
-│           │                       │   ├── UserInterface.java
-│           │                       │   └── package-info.java
-│           │                       └── package-info.java
-│           └── resources
-│               └── mapper
-│                   └── UserMapper.xml
-├── baiyan-ddd-interaction
-│   ├── baiyan-ddd-interaction.iml
-│   ├── pom.xml
-│   └── src
-│       └── main
-│           └── java
-│               └── com
-│                   └── baiyan
-│                       └── ddd
-│                           └── interaction
-│                               ├── api
-│                               │   └── package-info.java
-│                               ├── config
-│                               │   ├── GlobalExceptionHandler.java
-│                               │   └── package-info.java
-│                               ├── controller
-│                               │   ├── UserController.java
-│                               │   └── package-info.java
-│                               ├── mq
-│                               │   └── package-info.java
-│                               └── package-info.java
-├── baiyan-ddd-rpc
-│   ├── baiyan-ddd-rpc.iml
-│   ├── pom.xml
-│   └── src
-│       └── main
-│           └── java
-│               └── com.baiyan.ddd.rpc
-│                   └── package-info.java
-├── baiyan-ddd-start
-│   ├── baiyan-ddd-start.iml
-│   ├── pom.xml
-│   └── src
-│       └── main
-│           ├── java
-│           │   └── com
-│           │       └── baiyan
-│           │           └── ddd
-│           │               └── BaiyanDDDApplication.java
-│           └── resources
-│               ├── application.yml
-│               ├── init.sql
-│               └── messages.properties
-├── ddd.iml
-└── pom.xml
-```
+> 作为程序员嘛，我还是比较提倡大家多思考，多扎实自己的基础知识的。面试突击文虽香，但是，面试毕竟像是考试，更多时候我们还是需要在一家公司里面去工作。别人升职加薪，你怨声载道，最后跳槽加小几千没有意义嘛。
 
 
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/384334cfe26d4bad84f41566676f0ceb~tplv-k3u1fbpfcp-watermark.image?)
 
-# 四.更多DDD学习资料
+言归正传，我相信基本上99%的java开发读者，不管你是计科专业出身还是跨专业，初学spring或者springboot的时候，接触到的代码分层都是MVC。
+
+**这说明了MVC有它自身独有的优势：**
+
+-   开发人员可以只关注整个结构中的其中某一层；
+-   可以很容易的用新的实现来替换原有层次的实现；
+-   可以降低**层**与**层**之间的依赖；
+-   有利于标准化；
+-   利于各**层**逻辑的复用。
+
+但是真实情况是这样吗？随着你系统功能迭代，业务逻辑越来越复杂之后。MVC三层中，V层作为数据载体，C层作为逻辑路由都是很薄的一层，大量的代码都堆积在了M层（模型层）。一个service的类，动辄几百上千行，大的甚至几万行，逻辑嵌套复杂，主业务逻辑不清晰。service做的稍微轻量化一点的，代码就像是胶水，把数据库执行逻辑与控制返回给前端的逻辑胶在一起，主次不清晰。
+
+一看你的工程，类啊，代码量啊都不少，你甚至不知道如何入手去修改“屎山”一样的代码。
+
+**归根到底的原因是什么？**
+
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a8041a396794c06ad9130fa8c9561c5~tplv-k3u1fbpfcp-watermark.image?)
+
+`service承载了它这个年纪不该承受的业务逻辑。`
+
+**举个例子：** 你负责了一个项目的从0到1的搭建，后面业务越来越好，招了新的研发进来。新的研发跟你一起开发，service层逻辑方法类似有不完全相同，为了偷懒，拷贝了你的代码，改了一小段逻辑。这时候基本上你的代码量已经是乘以2了。同理再来一个人，你的代码量可能乘了4。然而作为数据载体的POJO繁多，里面空空如也，你想把逻辑放进去，却发现无从入手。POJO的`贫血模型`陷入了恶性循环。
+
+**那么DDD为什么可以去解决以上的问题呢？**
+
+DDD核心思想是什么呢？解耦！让业务不是像炒大锅饭一样混在一起，而是一道道工序复杂的美食，都有他们自己独立的做法。
+
+DDD的价值观里面，任何业务都是某个业务领域模型的职责体现。A领域只会去做A领域的事情，A领域想去修改B领域，需要找中介（防腐层）去对B领域完成操作。我想完成一个很长的业务逻辑动作，在划分好业务边界之后，交给业务服务的编排者（应用服务）去组织业务模型（聚合）完成逻辑。
+
+这样，每个服务（领域）只会做自己业务边界内的事情，最小细粒度的去定义需求的实现。原先空空的`贫血模型`摇身一变变成了`充血模型`。原理冗长的service里面类似到处set，get值这种与业务逻辑无关的数据载体包装代码，都会被去除，进到`应用服务`层，你的代码就是你的业务逻辑。逻辑清晰，可维护性高！
+
+# 四.到底什么样的系统适配DDD
+
+看完上文对于DDD的分析之后是不是觉得MVC一对比简直就是垃圾。但是你回过头来想想，DDD其实在10几年前就已经被提出来了，但为什么是近几年才开始逐渐进入大众的视野？
+
+相信没有看过我之前DDD的文章的同学看了我上面的分析大概也能感觉的到，DDD这个系统不像MVC结构那么简单，分层肯定更加复杂。
+
+**因此不是适配DDD的系统是什么呢？**
+
+中小规模的系统，本身业务体量小，功能单一，选择mvc架构无疑是最好的。
+
+项目化交付的系统，研发周期短，一天到晚按照甲方的需求定制功能。
+
+**相反的，适配DDD的系统是什么呢？**
+
+中大规模系统，产品化模式，业务可持续迭代，可预见的业务逻辑复杂性的系统。
+
+**总而言之就是:**
+
+你还不了解DDD或者你们系统功能简单，就选择MVC.
+
+你不知道选用什么技术架构做开发，业务探索阶段，选用MVC.
+
+其他时候酌情考虑上DDD。
+
+# 五.DDD的代码怎么做，为什么要这么做
+
+## 5.1.经典分层
+
+![image-20210913185730992.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8fab081a1874d7ea7535c2f8db261b3~tplv-k3u1fbpfcp-watermark.image?)
+在用户界面层和业务逻辑层中间加了应用层(Application Layer) ， 业务逻辑层改为领域层， 数据访问层改为基础设施层(Infrastructure Layer) ， 突破之前数据库访问的限制。 固有的思维中，依赖是自顶向下传递的，用户界面依赖应用层，应用层依赖领域层和基础设施层，越往下的层，与业务越远，并更加通用；出于重用的考虑，通用的功能会剥离成框架或者平台，而在低层次(基础设施层)会调用、依赖这些框架，也就导致了业务对象(领域层)依赖外部平台或框架。
+
+## 5.2.依赖倒置分层
+
+![image-20210913190943631.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/74d153b22e9f4b20b4fcc96834d276c8~tplv-k3u1fbpfcp-watermark.image?
+)
+
+为了突破这种违背本身业务领域的依赖，将基础设施往上提，当领域服务与基础设置有交集时，定义一个接口`（灰度接口）`，让基础设施去实现对应的接口。接口本身是介于应用服务与领域服务之间的，为了纯净化领域层而存在。
+
+![Image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/25091f73dee942f38345708dced125ec~tplv-k3u1fbpfcp-watermark.image?)
+
+这么做的好处就是，从分包逻辑来看，上层依赖下层，底层业务域不依赖任何一方，领域独立。
+
+## 5.3.DDD分层请求调用链
+
+![未命名文件.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7661389f64544a0eb2f905c0889fe8eb~tplv-k3u1fbpfcp-watermark.image?)
+
+### 5.3.1.增删改
+
+1.用户交互层发起请求
+
+2.应用服务层编排业务逻辑【仅做方法编排，不处理任何逻辑】
+
+3.编排逻辑如果依赖三方rpc，则定义adapter，方式三方服务字段影响到本服务。
+
+4.编排逻辑如果依赖其他领域服务，应用服务，可直接调用，无需转化。但是与当前框架不相符合的，例如发送短信这种，最好还是走一下适配器，运营商换了，依赖的应用服务没准都不同了。
+
+5.聚合根本身无法处理的业务在领域层处理，依赖倒置原则，建立一层interfaces层（灰度防腐层），放置领域层与基础设置的耦合。
+
+6.逻辑处理结束，调用仓储聚合方法。
+
+### 5.3.2.查询
+
+CQRS模型，与增删改不同的应用服务，是查询应用服务。不必遵守DDD分层规则（不会对数据做修改）。简单逻辑甚至可以直接由controller层调用仓储层返回数据。
+
+# 六.更多DDD学习资料
 
 **博客资料:**
 
@@ -255,13 +141,11 @@
 
 > <https://github.com/Sayi/ddd-cargo>
 
-
-
-# 五.特别鸣谢
+# 七.特别鸣谢
 
 [lilpilot](https://postcard.lilpilot.co/)
 
-# 六.联系我
+# 八.联系我
 
 demo如有不正确之处，欢迎指正，别忘了star哦~~~
 
