@@ -8,11 +8,11 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.10</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from com.baiyan.ddd.biz.user.infrastructure.repository -->
     </parent>
     <groupId>com.baiyan</groupId>
     <artifactId>ddd</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>ddd-demo</name>
     <description>Simple Demo For DDD</description>
 
@@ -39,8 +39,9 @@
         <module>baiyan-ddd-start</module>
         <module>baiyan-ddd-interaction</module>
         <module>baiyan-ddd-base</module>
-        <module>baiyan-ddd-core</module>
+        <module>baiyan-ddd-biz</module>
         <module>baiyan-ddd-rpc</module>
+        <module>baiyan-ddd-share</module>
     </modules>
 
     <dependencies>
