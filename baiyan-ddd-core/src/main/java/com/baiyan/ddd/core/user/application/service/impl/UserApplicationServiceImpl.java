@@ -8,7 +8,7 @@ import com.baiyan.ddd.core.user.application.service.UserApplicationService;
 import com.baiyan.ddd.core.user.domain.event.UserCreateEvent;
 import com.baiyan.ddd.core.user.domain.event.UserDeleteEvent;
 import com.baiyan.ddd.core.user.domain.event.UserUpdateEvent;
-import com.baiyan.ddd.core.user.domain.factory.UserFactory;
+import com.baiyan.ddd.core.user.application.factory.UserFactory;
 import com.baiyan.ddd.core.user.domain.model.User;
 import com.baiyan.ddd.core.user.domain.repository.UserRepository;
 import com.baiyan.ddd.core.user.domain.service.UserDomainService;

@@ -3,4 +3,4 @@
  *
  * @author baiyan
  */
-package com.baiyan.ddd.core.user.domain.factory;
+package com.baiyan.ddd.core.user.application.factory;
