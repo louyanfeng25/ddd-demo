@@ -9,12 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>baiyan-ddd-interaction</artifactId>
+    <artifactId>baiyan-ddd-domain</artifactId>
+
 
     <dependencies>
         <dependency>
             <groupId>com.baiyan</groupId>
-            <artifactId>baiyan-ddd-application</artifactId>
+            <artifactId>baiyan-ddd-base</artifactId>
         </dependency>
     </dependencies>
 

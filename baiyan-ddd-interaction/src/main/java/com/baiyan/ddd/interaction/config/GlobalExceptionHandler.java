@@ -5,7 +5,7 @@ import com.baiyan.ddd.base.exception.ServiceException;
 import com.baiyan.ddd.base.exception.ValidationException;
 import com.baiyan.ddd.base.model.result.BaseResult;
 import com.baiyan.ddd.base.model.result.Result;
-import com.baiyan.ddd.share.common.config.SpringMessageSourceErrorMessageSource;
+import com.baiyan.ddd.infrastructure.common.config.SpringMessageSourceErrorMessageSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

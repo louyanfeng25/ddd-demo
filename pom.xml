@@ -39,9 +39,10 @@
         <module>baiyan-ddd-start</module>
         <module>baiyan-ddd-interaction</module>
         <module>baiyan-ddd-base</module>
-        <module>baiyan-ddd-biz</module>
         <module>baiyan-ddd-rpc</module>
-        <module>baiyan-ddd-share</module>
+        <module>baiyan-ddd-infrastructure</module>
+        <module>baiyan-ddd-domain</module>
+        <module>baiyan-ddd-application</module>
     </modules>
 
     <dependencies>
@@ -70,7 +71,17 @@
             </dependency>
             <dependency>
                 <groupId>com.baiyan</groupId>
-                <artifactId>baiyan-ddd-core</artifactId>
+                <artifactId>baiyan-ddd-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baiyan</groupId>
+                <artifactId>baiyan-ddd-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baiyan</groupId>
+                <artifactId>baiyan-ddd-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

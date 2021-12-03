@@ -33,4 +33,17 @@ public interface Repository<AGGREGATE, ID extends Serializable>{
      */
     <S extends AGGREGATE> S save(S aggregate);
 
+
+    /**
+     * 保存或更新聚合根【直接刷表】
+     *
+     * @param aggregate
+     * @param <S>
+     * @return
+     */
+    default <S extends AGGREGATE> S saveAndFlush(S aggregate){
+        return aggregate;
+    }
+
+
 }

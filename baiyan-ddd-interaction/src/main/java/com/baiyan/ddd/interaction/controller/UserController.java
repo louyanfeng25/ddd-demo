@@ -1,15 +1,15 @@
 package com.baiyan.ddd.interaction.controller;
 
+import com.baiyan.ddd.application.command.UserApplicationService;
+import com.baiyan.ddd.application.command.cmd.user.CreateUserCommand;
+import com.baiyan.ddd.application.command.cmd.user.UpdateUserCommand;
+import com.baiyan.ddd.application.query.UserQueryApplicationService;
+import com.baiyan.ddd.application.query.model.user.dto.UserPageDTO;
 import com.baiyan.ddd.base.model.query.KeywordQuery;
 import com.baiyan.ddd.base.model.result.BaseResult;
 import com.baiyan.ddd.base.model.result.Page;
 import com.baiyan.ddd.base.model.result.PageResult;
 import com.baiyan.ddd.base.model.result.Result;
-import com.baiyan.ddd.biz.user.application.model.command.CreateUserCommand;
-import com.baiyan.ddd.biz.user.application.model.command.UpdateUserCommand;
-import com.baiyan.ddd.biz.user.application.model.dto.UserPageDTO;
-import com.baiyan.ddd.biz.user.application.repository.UserQueryRepository;
-import com.baiyan.ddd.biz.user.application.service.UserApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,7 @@ public class UserController {
     UserApplicationService userApplicationService;
 
     @Autowired
-    UserQueryRepository userQueryRepository;
+    UserQueryApplicationService userQueryApplicationService;
 
     @PostMapping
     public Result<Object> create(@RequestBody @Valid CreateUserCommand command){
@@ -50,7 +50,7 @@ public class UserController {
 
     @GetMapping
     public PageResult<UserPageDTO> query(KeywordQuery query){
-        Page<UserPageDTO> users = userQueryRepository.userPage(query);
+        Page<UserPageDTO> users = userQueryApplicationService.userPage(query);
         return PageResult.ok(users);
     }
 
