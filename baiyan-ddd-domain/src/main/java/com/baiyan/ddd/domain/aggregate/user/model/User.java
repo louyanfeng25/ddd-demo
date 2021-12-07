@@ -74,10 +74,6 @@ public class User implements AggregateRoot {
     private LocalDateTime gmtModified;
 
 
-    public void checkUserName(String userName){
-
-    }
-
     /**
      * 根据角色id设置角色信息
      *
