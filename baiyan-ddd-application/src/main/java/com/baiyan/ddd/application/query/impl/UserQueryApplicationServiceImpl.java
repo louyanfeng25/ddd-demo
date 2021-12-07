@@ -15,7 +15,7 @@ import com.baiyan.ddd.infrastructure.db.model.UserPO;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
  * @author baiyan
  */
-@Repository
+@Service
 public class UserQueryApplicationServiceImpl implements UserQueryApplicationService {
 
     @Autowired
