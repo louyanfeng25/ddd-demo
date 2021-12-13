@@ -42,11 +42,11 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(CreateUserCommand command){
-        //工厂创建用户
-        User user = command.toUser(command);
         //这里如果校验逻辑比较多，可以单独抽取一个UserValidationUtil进行参数校验
         //也可以在applicationService中把所需要校验的参数全部查询完，然后把校验逻辑卸载domain里面
         ValidationUtil.isTrue(Objects.isNull(userQueryApplicationService.detail(command.getUserName())),"user.user.name.is.exist");
+        //工厂创建用户
+        User user = command.toUser(command);
         //存储用户
         User save = userRepository.save(user);
         //发布用户新建的领域事件
