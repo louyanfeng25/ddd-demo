@@ -5,20 +5,20 @@ package com.baiyan.ddd.domain.share.event;
  *
  * @author baiyan
  */
-public interface DomainEventPublisher<EVENT extends BaseDomainEvent> {
+public interface DomainEventPublisher {
 
     /**
      * 发布事件
      *
      * @param event event
      */
-    void publish(EVENT event);
+    <EVENT extends BaseDomainEvent> void publish(EVENT event);
 
     /**
      * 发布事件并保存
      *
      * @param event event
      */
-    void publishAndSave(EVENT event);
+    <EVENT extends BaseDomainEvent> void publishAndSave(EVENT event);
 
 }

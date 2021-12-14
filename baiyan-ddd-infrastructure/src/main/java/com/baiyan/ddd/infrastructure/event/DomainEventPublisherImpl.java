@@ -30,13 +30,13 @@ public class DomainEventPublisherImpl implements DomainEventPublisher {
     private DomainEventRepository domainEventRepository;
 
     @Override
-    public void publish(BaseDomainEvent event) {
+    public <EVENT extends BaseDomainEvent> void publish(EVENT event) {
         log.info("发布事件,event:{}", GsonUtil.gsonToString(event));
         applicationEventPublisher.publishEvent(event);
     }
 
     @Override
-    public void publishAndSave(BaseDomainEvent event) {
+    public <EVENT extends BaseDomainEvent> void publishAndSave(EVENT event) {
         log.info("保存并发布事件,event:{}", GsonUtil.gsonToString(event));
 
         List<BaseDomainEvent> baseDomainEventList = domainEventRepository.loadByDomainId(event.getDomainId());

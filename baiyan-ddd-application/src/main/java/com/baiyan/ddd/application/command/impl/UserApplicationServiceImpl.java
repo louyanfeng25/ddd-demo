@@ -41,7 +41,6 @@ public class UserApplicationServiceImpl implements UserApplicationService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @SuppressWarnings("unchecked")
     public void create(CreateUserCommand command){
         //这里如果校验逻辑比较多，可以单独抽取一个UserValidationUtil进行参数校验
         //也可以在applicationService中把所需要校验的参数全部查询完，然后把校验逻辑卸载domain里面
@@ -56,7 +55,6 @@ public class UserApplicationServiceImpl implements UserApplicationService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @SuppressWarnings("unchecked")
     public void update(UpdateUserCommand command){
         //先校验用户是否存在【应用服务仅允许此种判断，抛出错误情况，即为参数校验，不允许实际业务逻辑处理】
         ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(command.getUserId())),"user.is.not.exist");
@@ -72,7 +70,6 @@ public class UserApplicationServiceImpl implements UserApplicationService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @SuppressWarnings("unchecked")
     public void delete(Long id){
         ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(id)),"user.is.not.exist");
         //根据用户id删除用户聚合
