@@ -11,7 +11,7 @@ import com.baiyan.ddd.domain.aggregate.user.event.UserDeleteEvent;
 import com.baiyan.ddd.domain.aggregate.user.event.UserUpdateEvent;
 import com.baiyan.ddd.domain.aggregate.user.model.User;
 import com.baiyan.ddd.domain.aggregate.user.repository.UserRepository;
-import common.event.DomainEventPublisher;
+import com.baiyan.ddd.domain.share.event.DomainEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +41,7 @@ public class UserApplicationServiceImpl implements UserApplicationService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @SuppressWarnings("unchecked")
     public void create(CreateUserCommand command){
         //这里如果校验逻辑比较多，可以单独抽取一个UserValidationUtil进行参数校验
         //也可以在applicationService中把所需要校验的参数全部查询完，然后把校验逻辑卸载domain里面
@@ -50,11 +51,12 @@ public class UserApplicationServiceImpl implements UserApplicationService {
         //存储用户
         User save = userRepository.save(user);
         //发布用户新建的领域事件
-        domainEventPublisher.publishEvent(new UserCreateEvent(save));
+        domainEventPublisher.publish(new UserCreateEvent(save));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @SuppressWarnings("unchecked")
     public void update(UpdateUserCommand command){
         //先校验用户是否存在【应用服务仅允许此种判断，抛出错误情况，即为参数校验，不允许实际业务逻辑处理】
         ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(command.getUserId())),"user.is.not.exist");
@@ -65,16 +67,18 @@ public class UserApplicationServiceImpl implements UserApplicationService {
         //存储用户
         User save = userRepository.save(user);
         //发布用户修改的领域事件
-        domainEventPublisher.publishEvent(new UserUpdateEvent(save));
+        domainEventPublisher.publish(new UserUpdateEvent(save));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @SuppressWarnings("unchecked")
     public void delete(Long id){
+        ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(id)),"user.is.not.exist");
         //根据用户id删除用户聚合
         userRepository.delete(id);
         //发布用户删除领域事件
-        domainEventPublisher.publishEvent(new UserDeleteEvent(id));
+        domainEventPublisher.publishAndSave(new UserDeleteEvent(id));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.baiyan.ddd.infrastructure.common.config;
+package com.baiyan.ddd.infrastructure.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
