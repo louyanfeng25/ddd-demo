@@ -21,11 +21,11 @@ public interface UserApplicationService extends ApplicationService {
     void create(CreateUserAbilityCommand command);
 
     /**
-     * 修改用户
+     * 修改用户用户名
      *
      * @param command
      */
-    void update(UpdateUserCommand command);
+    void updateUserName(UpdateUserCommand command);
 
     /**
      * 删除用户

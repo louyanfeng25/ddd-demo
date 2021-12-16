@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping
-    public Result<Object> update(@RequestBody @Valid UpdateUserCommand command){
-        userApplicationService.update(command);
+    public Result<Object> updateUserName(@RequestBody @Valid UpdateUserCommand command){
+        userApplicationService.updateUserName(command);
         return Result.ok(BaseResult.UPDATE_SUCCESS);
     }
 

@@ -7,9 +7,11 @@ import com.baiyan.ddd.application.query.UserQueryApplicationService;
 import com.baiyan.ddd.application.query.model.role.dto.RoleDTO;
 import com.baiyan.ddd.base.model.result.Result;
 import com.baiyan.ddd.base.util.ValidationUtil;
+import com.baiyan.ddd.domain.aggregate.role.model.Role;
 import com.baiyan.ddd.domain.aggregate.user.event.UserCreateEvent;
 import com.baiyan.ddd.domain.aggregate.user.model.User;
 import com.baiyan.ddd.domain.aggregate.user.repository.UserRepository;
+import com.baiyan.ddd.domain.aggregate.user.service.UserDomainService;
 import com.baiyan.ddd.domain.share.event.DomainEventPublisher;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,9 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
     @Autowired
     DomainEventPublisher domainEventPublisher;
 
+    @Autowired
+    UserDomainService userDomainService;
+
     @Override
     public void checkHandler(CreateUserAbilityCommand command) {
         //校验用户名不存在
@@ -62,6 +67,16 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
 
         //工厂创建用户
         User user = command.toUser(command);
+
+        //执行用户新增相关业务逻辑
+        user.printCreate();
+
+        //仅仅为了演示领域服务使用，这没必要这么做，能力点已经是一个比较原子的业务逻辑点了
+        //理论上有了能力层之后直接可以砍掉领域服务层
+
+        //此处应该调用RoleRepository.ById拿到Role聚合
+        Role admin = Role.builder().code("admin").build();
+        userDomainService.printTag(user, admin);
 
         //存储用户
         User save = userRepository.save(user);

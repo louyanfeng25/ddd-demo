@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Slf4j
 public class User implements AggregateRoot {
 
     /**
@@ -115,6 +117,29 @@ public class User implements AggregateRoot {
      */
     public void bindUnit(Long unitId){
         this.unit = new Unit(unitId);
+    }
+
+    /**
+     * 修改用户名
+     *
+     * @param userName
+     */
+    public void bindUserName(String userName){
+        this.userName = userName;
+    }
+
+    /**
+     * 演示修改业务逻辑
+     */
+    public void printUpdate(){
+        log.info(this.userName + "发生修改");
+    }
+
+    /**
+     * 演示新增业务逻辑
+     */
+    public void printCreate(){
+        log.info(this.userName + "发生新增");
     }
 
 }
