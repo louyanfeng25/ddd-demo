@@ -50,6 +50,7 @@ public class Role implements AggregateRoot {
      * @return
      */
     public String getUserTag(){
+        //此处省略100行代码
         return Objects.equals(this.code,"admin") ? "管理员" : "普通用户";
     }
 

@@ -132,6 +132,7 @@ public class User implements AggregateRoot {
      * 演示修改业务逻辑
      */
     public void printUpdate(){
+        //此处省略100行代码
         log.info(this.userName + "发生修改");
     }
 
@@ -139,6 +140,7 @@ public class User implements AggregateRoot {
      * 演示新增业务逻辑
      */
     public void printCreate(){
+        //此处省略100行代码
         log.info(this.userName + "发生新增");
     }
 

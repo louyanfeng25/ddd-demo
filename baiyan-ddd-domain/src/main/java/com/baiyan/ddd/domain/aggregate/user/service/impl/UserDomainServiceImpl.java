@@ -17,6 +17,7 @@ public class UserDomainServiceImpl implements UserDomainService {
 
     @Override
     public void printTag(User user, Role role){
+        //此处省略100行代码
         log.info("用户：{}的标签解析为：{}",user.getUserName(),role.getUserTag());
     }
 }
