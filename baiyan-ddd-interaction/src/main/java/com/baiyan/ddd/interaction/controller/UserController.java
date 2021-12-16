@@ -1,7 +1,7 @@
 package com.baiyan.ddd.interaction.controller;
 
+import com.baiyan.ddd.application.ability.user.cmd.CreateUserAbilityCommand;
 import com.baiyan.ddd.application.command.UserApplicationService;
-import com.baiyan.ddd.application.command.cmd.user.CreateUserCommand;
 import com.baiyan.ddd.application.command.cmd.user.UpdateUserCommand;
 import com.baiyan.ddd.application.query.UserQueryApplicationService;
 import com.baiyan.ddd.application.query.model.user.dto.UserPageDTO;
@@ -31,7 +31,7 @@ public class UserController {
     UserQueryApplicationService userQueryApplicationService;
 
     @PostMapping
-    public Result<Object> create(@RequestBody @Valid CreateUserCommand command){
+    public Result<Object> create(@RequestBody @Valid CreateUserAbilityCommand command){
         userApplicationService.create(command);
         return Result.ok(BaseResult.INSERT_SUCCESS);
     }

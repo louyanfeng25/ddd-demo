@@ -1,6 +1,6 @@
 package com.baiyan.ddd.application.command;
 
-import com.baiyan.ddd.application.command.cmd.user.CreateUserCommand;
+import com.baiyan.ddd.application.ability.user.cmd.CreateUserAbilityCommand;
 import com.baiyan.ddd.application.command.cmd.user.UpdateUserCommand;
 import com.baiyan.ddd.base.model.ddd.ApplicationService;
 
@@ -18,7 +18,7 @@ public interface UserApplicationService extends ApplicationService {
      *
      * @param command
      */
-    void create(CreateUserCommand command);
+    void create(CreateUserAbilityCommand command);
 
     /**
      * 修改用户

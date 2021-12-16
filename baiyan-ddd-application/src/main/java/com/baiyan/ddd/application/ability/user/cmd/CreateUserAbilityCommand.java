@@ -1,4 +1,4 @@
-package com.baiyan.ddd.application.command.cmd.user;
+package com.baiyan.ddd.application.ability.user.cmd;
 
 import com.baiyan.ddd.base.model.ddd.Command;
 import com.baiyan.ddd.domain.aggregate.user.model.User;
@@ -10,14 +10,11 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
- * 修改用户指令
+ * 新建用户指令
  * @author baiyan
  */
 @Data
-public class UpdateUserCommand implements Command {
-
-    @NotNull(message = "{user.id.is.null}")
-    private Long userId;
+public class CreateUserAbilityCommand implements Command {
 
     /**
      * 用户名
@@ -67,19 +64,28 @@ public class UpdateUserCommand implements Command {
     @NotNull(message = "{unit.id.is.null}")
     private Long unitId;
 
+    /**
+     * 用户密码
+     */
+    @NotBlank(message = "{user.password.is.blank}")
+    private String password;
 
     /**
-     * 构建出需要修改的用户
+     * 将command转换成聚合根
+     *
+     * 逻辑简单，只是做一些字段的映射则在command里面直接转化返回给应用服务层使用即可。
+     *
+     * 如果逻辑复杂，command参数进来需要做一些比较复杂的逻辑处理，则使用工厂类
      *
      * @param command
      * @return
      */
-    public User toUser(UpdateUserCommand command){
+    public User toUser(CreateUserAbilityCommand command){
         User user = User.builder()
-                .id(command.getUserId())
                 .userName(command.getUserName())
                 .realName(command.getRealName())
                 .phone(command.getPhone())
+                .password(command.getPassword())
                 .build();
         user.bindUnit(command.getUnitId());
         user.bindRole(command.getRoles());

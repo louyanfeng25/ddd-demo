@@ -59,6 +59,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--    模块依赖    -->
             <dependency>
                 <groupId>com.baiyan</groupId>
                 <artifactId>baiyan-ddd-base</artifactId>
@@ -67,6 +68,11 @@
             <dependency>
                 <groupId>com.baiyan</groupId>
                 <artifactId>baiyan-ddd-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baiyan</groupId>
+                <artifactId>baiyan-ddd-rpc</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -94,6 +100,8 @@
                 <artifactId>baiyan-ddd-start</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+
             <!--    三方依赖        -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -152,45 +160,7 @@
         </dependencies>
     </dependencyManagement>
 
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <env>prod</env>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
-
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>config/**</exclude>
-                    <exclude>templates/**</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources/config/${env}</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources/templates</directory>
-                <targetPath>templates</targetPath>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
