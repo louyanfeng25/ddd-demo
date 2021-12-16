@@ -7,7 +7,6 @@ import lombok.Data;
 /**
  * 单位实体
  * @author baiyan
- * @date 2021/12/03
  */
 @Data
 @AllArgsConstructor

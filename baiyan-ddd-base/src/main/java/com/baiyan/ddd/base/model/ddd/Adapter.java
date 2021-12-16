@@ -1,7 +1,7 @@
 package com.baiyan.ddd.base.model.ddd;
 
 /**
- * rpc适配器
+ * 适配器标记
  *
  * @author baiyan
  */

@@ -1,5 +1,5 @@
 /**
- * 应用服务层方法出餐
+ * CQRS 的 Return-DTO
  *
  * @author baiyan
  */

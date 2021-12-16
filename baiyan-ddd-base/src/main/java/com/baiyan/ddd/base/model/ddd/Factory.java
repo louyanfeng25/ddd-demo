@@ -1,7 +1,7 @@
 package com.baiyan.ddd.base.model.ddd;
 
 /**
- * 工厂标记
+ * 工厂类标记
  *
  * @author baiyan
  */

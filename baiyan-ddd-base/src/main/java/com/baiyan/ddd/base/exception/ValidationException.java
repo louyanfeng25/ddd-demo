@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
+ * 校验异常类
+ *
  * @author baiyan
  */
 @EqualsAndHashCode(callSuper = true)

@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import javax.validation.constraints.NotNull;
 
 /**
- * 修改用户命令
+ * 修改用户指令
  * @author baiyan
  */
 @Data

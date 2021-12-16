@@ -1,5 +1,5 @@
 /**
- * 查询条件
+ * CQRS 查询条件
  *
  * @author baiyan
  */

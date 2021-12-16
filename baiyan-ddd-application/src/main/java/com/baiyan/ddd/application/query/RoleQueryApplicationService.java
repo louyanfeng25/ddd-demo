@@ -6,9 +6,7 @@ import com.baiyan.ddd.base.model.ddd.QueryApplicationService;
 import java.util.List;
 
 /**
- * 用户查询应用服务
- *
- * 复杂逻辑在此组合，简单逻辑可直接CQRS,直接查询仓储层进行数据聚合
+ * 角色查询应用服务
  *
  * @author baiyan
  */

@@ -31,7 +31,9 @@ public class BaseUuidEntity {
     private LocalDateTime gmtModified;
 
     /**
-     * 是否删除，0位未删除
+     * mybatis-plus支持的数据软删标识
+     *
+     * 是否删除，0为未删除
      */
     @TableLogic(delval = "current_timestamp()")
     private Long deleted;

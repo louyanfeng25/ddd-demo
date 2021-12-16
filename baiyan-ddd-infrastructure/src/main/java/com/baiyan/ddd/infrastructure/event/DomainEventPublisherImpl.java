@@ -15,8 +15,6 @@ import java.util.Objects;
 
 
 /**
- * 领域事件发布实现类
- *
  * @author baiyan
  */
 @Component

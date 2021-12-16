@@ -1,7 +1,7 @@
 package com.baiyan.ddd.base.model.ddd;
 
 /**
- * CQRS命令标记
+ * 增删改指令标记
  *
  * @author baiyan
  */

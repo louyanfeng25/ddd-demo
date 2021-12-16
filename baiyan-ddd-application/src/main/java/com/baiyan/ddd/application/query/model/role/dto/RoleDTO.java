@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 /**
  * 角色信息
  * @author baiyan
- * @date 2021/12/03
  */
 @Data
 @NoArgsConstructor

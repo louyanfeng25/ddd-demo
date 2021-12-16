@@ -1,4 +1,4 @@
-package com.baiyan.ddd.application.listener;
+package com.baiyan.ddd.interaction.handler;
 
 import com.baiyan.ddd.base.model.result.Result;
 import com.baiyan.ddd.domain.aggregate.user.event.UserDeleteEvent;

@@ -7,6 +7,8 @@ import com.baiyan.ddd.base.model.ddd.ApplicationService;
 /**
  * 用户应用服务
  *
+ * 业务逻辑编排，仅对业务用例做方法的编排
+ *
  * @author baiyan
  */
 public interface UserApplicationService extends ApplicationService {

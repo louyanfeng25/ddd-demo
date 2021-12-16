@@ -7,7 +7,6 @@ import lombok.Getter;
  * 事件处理状态
  *
  * @author baiyan
- * @since 2021/12/14
  */
 @Getter
 @AllArgsConstructor

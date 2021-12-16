@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
  * 单位信息适配返回实体
  *
  * @author baiyan
- * @date 2021/12/03
  */
 @Data
 @NoArgsConstructor

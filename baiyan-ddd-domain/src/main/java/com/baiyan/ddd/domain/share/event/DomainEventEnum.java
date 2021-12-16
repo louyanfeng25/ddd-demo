@@ -7,7 +7,6 @@ import lombok.Getter;
  * 领域事件业务类型枚举
  *
  * @author baiyan
- * @date 2021/12/14
  */
 @AllArgsConstructor
 public enum DomainEventEnum {

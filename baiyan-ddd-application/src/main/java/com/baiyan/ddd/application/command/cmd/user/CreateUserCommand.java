@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import javax.validation.constraints.NotBlank;
 
 /**
- * 新建用户命令
+ * 新建用户指令
  * @author baiyan
  */
 @Data
@@ -26,7 +26,7 @@ public class CreateUserCommand extends BaseUserCommand implements Command {
      *
      * 逻辑简单，只是做一些字段的映射则在command里面直接转化返回给应用服务层使用即可。
      *
-     * 如果逻辑复杂，command参数进来需要做一些比较复杂的逻辑处理，则使用工厂*
+     * 如果逻辑复杂，command参数进来需要做一些比较复杂的逻辑处理，则使用工厂类
      *
      * @param command
      * @return

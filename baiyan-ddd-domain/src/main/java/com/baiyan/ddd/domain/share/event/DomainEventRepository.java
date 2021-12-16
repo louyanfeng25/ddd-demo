@@ -6,7 +6,6 @@ import java.util.List;
  * 领域事件仓储，保存已发生的领域事件，用于事件溯源
  *
  * @author baiyan
- * @since 2021/12/14
  */
 public interface DomainEventRepository {
 

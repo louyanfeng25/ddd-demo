@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
- * 通用用户命令
+ * 通用用户指令
  *
  * @author baiyan
  */
