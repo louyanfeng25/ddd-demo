@@ -1,6 +1,7 @@
 package com.baiyan.ddd.domain.aggregate.user.model;
 
 import com.baiyan.ddd.base.model.ddd.AggregateRoot;
+import com.baiyan.ddd.base.util.ValidationUtil;
 import com.baiyan.ddd.domain.share.valueobject.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -122,9 +124,11 @@ public class User implements AggregateRoot {
     /**
      * 修改用户名
      *
-     * @param userName
+     * @param userName 修改后的用户名
+     * @param existUser 根据修改后的用户名查询出来用户
      */
-    public void bindUserName(String userName){
+    public void bindUserName(String userName,User existUser){
+        ValidationUtil.isTrue(Objects.isNull(existUser) || Objects.equals(existUser.getId(),this.id),"user.user.name.is.exist");
         this.userName = userName;
     }
 

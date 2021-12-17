@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 public class UserConverter {
 
     /**
-     * 仓储数据转聚合
+     * 数据模型转领域模型
      *
-     * @param po
-     * @return
+     * @param po 用户数据模型
+     * @return 用户领域模型
      */
     public static User deserialize(UserPO po) {
         User user = User.builder()
@@ -36,7 +36,13 @@ public class UserConverter {
         return user;
     }
 
-    public static UserPO serializeUser(User user){
+    /**
+     * 领域模型转数据模型
+     *
+     * @param user 用户领域模型
+     * @return 用户数据模型
+     */
+    public static UserPO serialize(User user){
         UserPO po = new UserPO();
         BeanUtils.copyProperties(user,po);
         po.setCity(user.getAddress().getCity());

@@ -5,6 +5,7 @@ import com.baiyan.ddd.domain.aggregate.user.repository.UserRepository;
 import com.baiyan.ddd.infrastructure.db.converter.UserConverter;
 import com.baiyan.ddd.infrastructure.db.mapper.UserMapper;
 import com.baiyan.ddd.infrastructure.db.model.UserPO;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,8 +38,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User byUserName(String userName){
+        UserPO user = userMapper.selectOne(Wrappers.<UserPO>lambdaQuery().eq(UserPO::getUserName,userName));
+        if(Objects.isNull(user)){
+            return null;
+        }
+        return UserConverter.deserialize(user);
+    }
+
+    @Override
     public User save(User user){
-        UserPO userPo = UserConverter.serializeUser(user);
+        UserPO userPo = UserConverter.serialize(user);
         if(Objects.isNull(user.getId())){
             userMapper.insert(userPo);
         }else {

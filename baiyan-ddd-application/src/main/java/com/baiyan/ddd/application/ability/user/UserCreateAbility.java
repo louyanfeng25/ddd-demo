@@ -2,12 +2,10 @@ package com.baiyan.ddd.application.ability.user;
 
 import com.baiyan.ddd.application.ability.share.BaseAbility;
 import com.baiyan.ddd.application.ability.user.cmd.CreateUserAbilityCommand;
-import com.baiyan.ddd.application.query.RoleQueryApplicationService;
-import com.baiyan.ddd.application.query.UserQueryApplicationService;
-import com.baiyan.ddd.application.query.model.role.dto.RoleDTO;
 import com.baiyan.ddd.base.model.result.Result;
 import com.baiyan.ddd.base.util.ValidationUtil;
 import com.baiyan.ddd.domain.aggregate.role.model.Role;
+import com.baiyan.ddd.domain.aggregate.role.repository.RoleRepository;
 import com.baiyan.ddd.domain.aggregate.user.event.UserCreateEvent;
 import com.baiyan.ddd.domain.aggregate.user.model.User;
 import com.baiyan.ddd.domain.aggregate.user.repository.UserRepository;
@@ -29,10 +27,7 @@ import java.util.Objects;
 public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Void> {
 
     @Autowired
-    UserQueryApplicationService userQueryApplicationService;
-
-    @Autowired
-    RoleQueryApplicationService roleQueryApplicationService;
+    RoleRepository roleRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -46,9 +41,9 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
     @Override
     public void checkHandler(CreateUserAbilityCommand command) {
         //校验用户名不存在
-        ValidationUtil.isTrue(Objects.isNull(userQueryApplicationService.detail(command.getUserName())),"user.user.name.is.exist");
+        ValidationUtil.isTrue(Objects.isNull(userRepository.byUserName(command.getUserName())),"user.user.name.is.exist");
         //校验角色存在
-        List<RoleDTO> roles = roleQueryApplicationService.list(command.getRoles());
+        List<Role> roles = roleRepository.listByIds(command.getRoles());
         ValidationUtil.isTrue(CollectionUtils.isNotEmpty(roles) &&
                         Objects.equals(roles.size(),command.getRoles().size()),
                 "user.role.is.not.exist");

@@ -4,9 +4,6 @@ import com.baiyan.ddd.application.ability.user.UserCreateAbility;
 import com.baiyan.ddd.application.ability.user.cmd.CreateUserAbilityCommand;
 import com.baiyan.ddd.application.command.UserApplicationService;
 import com.baiyan.ddd.application.command.cmd.user.UpdateUserCommand;
-import com.baiyan.ddd.application.query.RoleQueryApplicationService;
-import com.baiyan.ddd.application.query.UserQueryApplicationService;
-import com.baiyan.ddd.application.query.model.user.dto.UserDTO;
 import com.baiyan.ddd.base.util.ValidationUtil;
 import com.baiyan.ddd.domain.aggregate.user.event.UserDeleteEvent;
 import com.baiyan.ddd.domain.aggregate.user.event.UserUpdateEvent;
@@ -34,12 +31,6 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     UserRepository userRepository;
 
     @Autowired
-    UserQueryApplicationService userQueryApplicationService;
-
-    @Autowired
-    RoleQueryApplicationService roleQueryApplicationService;
-
-    @Autowired
     DomainEventPublisher domainEventPublisher;
 
     @Override
@@ -57,13 +48,13 @@ public class UserApplicationServiceImpl implements UserApplicationService {
         //先校验用户是否存在
         User user = userRepository.byId(command.getUserId());
         ValidationUtil.isTrue(Objects.nonNull(user),"user.is.not.exist");
-        //校验用户名
-        UserDTO existUser = userQueryApplicationService.detail(command.getUserName());
-        ValidationUtil.isTrue(Objects.isNull(existUser) || Objects.equals(existUser.getId(),command.getUserId()),"user.user.name.is.exist");
+
+        //修改用户名
+        User existUser = userRepository.byUserName(command.getUserName());
+        user.bindUserName(command.getUserName(),existUser);
 
         //执行用户修改相关业务逻辑
         user.printUpdate();
-        user.bindUserName(command.getUserName());
 
         //存储用户
         User save = userRepository.save(user);

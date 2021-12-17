@@ -2,9 +2,7 @@ package com.baiyan.ddd.infrastructure.db.model;
 
 import com.baiyan.ddd.base.model.result.BaseUuidEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * 角色实体
@@ -13,6 +11,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_role")
 public class RolePO extends BaseUuidEntity {

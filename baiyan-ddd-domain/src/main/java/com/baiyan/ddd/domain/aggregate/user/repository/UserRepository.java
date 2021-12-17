@@ -9,4 +9,12 @@ import com.baiyan.ddd.domain.aggregate.user.model.User;
  * @author baiyan
  */
 public interface UserRepository extends Repository<User,Long> {
+
+    /**
+     * 按照用户名查询用户
+     *
+     * @param userName
+     * @return
+     */
+    User byUserName(String userName);
 }
