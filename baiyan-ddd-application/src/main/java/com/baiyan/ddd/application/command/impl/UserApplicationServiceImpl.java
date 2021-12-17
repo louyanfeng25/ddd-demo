@@ -56,7 +56,7 @@ public class UserApplicationServiceImpl implements UserApplicationService {
 
         //先校验用户是否存在
         User user = userRepository.byId(command.getUserId());
-        ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(command.getUserId())),"user.is.not.exist");
+        ValidationUtil.isTrue(Objects.nonNull(user),"user.is.not.exist");
         //校验用户名
         UserDTO existUser = userQueryApplicationService.detail(command.getUserName());
         ValidationUtil.isTrue(Objects.isNull(existUser) || Objects.equals(existUser.getId(),command.getUserId()),"user.user.name.is.exist");
