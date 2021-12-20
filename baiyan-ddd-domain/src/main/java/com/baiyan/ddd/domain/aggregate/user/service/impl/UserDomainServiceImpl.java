@@ -6,6 +6,8 @@ import com.baiyan.ddd.domain.aggregate.user.service.UserDomainService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 用户领域服务
  *
@@ -16,8 +18,12 @@ import org.springframework.stereotype.Service;
 public class UserDomainServiceImpl implements UserDomainService {
 
     @Override
-    public void printTag(User user, Role role){
-        //此处省略100行代码
-        log.info("用户：{}的标签解析为：{}",user.getUserName(),role.getUserTag());
+    public void printTag(User user, List<Role> roles){
+        roles.forEach(role->{
+            //省略大量逻辑
+            if(role.isAdmin()){
+                log.info("用户：{}的标签解析为：{}",user.getUserName(),role.getName());
+            }
+        });
     }
 }

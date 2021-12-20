@@ -4,6 +4,8 @@ import com.baiyan.ddd.base.model.ddd.DomainService;
 import com.baiyan.ddd.domain.aggregate.role.model.Role;
 import com.baiyan.ddd.domain.aggregate.user.model.User;
 
+import java.util.List;
+
 /**
  * 用户领域服务
  *
@@ -17,7 +19,7 @@ public interface UserDomainService  extends DomainService {
      * 根据用户关联的角色打印出标签
      *
      * @param user 用户聚合
-     * @param role 角色聚合
+     * @param roles 角色聚合
      */
-    void printTag(User user, Role role);
+    void printTag(User user, List<Role> roles);
 }

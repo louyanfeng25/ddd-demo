@@ -1,5 +1,6 @@
 package com.baiyan.ddd.application.ability.user;
 
+import com.baiyan.ddd.application.ability.share.AbilityContext;
 import com.baiyan.ddd.application.ability.share.BaseAbility;
 import com.baiyan.ddd.application.ability.user.cmd.CreateUserAbilityCommand;
 import com.baiyan.ddd.base.model.result.Result;
@@ -38,6 +39,8 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
     @Autowired
     UserDomainService userDomainService;
 
+    private final static String ROLE_INFO_KEY = "roleInfo";
+
     @Override
     public void checkHandler(CreateUserAbilityCommand command) {
         //校验用户名不存在
@@ -47,6 +50,7 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
         ValidationUtil.isTrue(CollectionUtils.isNotEmpty(roles) &&
                         Objects.equals(roles.size(),command.getRoles().size()),
                 "user.role.is.not.exist");
+        AbilityContext.putValue(ROLE_INFO_KEY,roles);
     }
 
     @Override
@@ -68,10 +72,8 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
 
         //仅仅为了演示领域服务使用，这没必要这么做，能力点已经是一个比较原子的业务逻辑点了
         //理论上有了能力层之后直接可以砍掉领域服务层
-
-        //此处应该调用RoleRepository.ById拿到Role聚合
-        Role admin = Role.builder().code("admin").build();
-        userDomainService.printTag(user, admin);
+        List<Role> roles = (List<Role>)AbilityContext.getValue(ROLE_INFO_KEY);
+        userDomainService.printTag(user, roles);
 
         //存储用户
         User save = userRepository.save(user);
