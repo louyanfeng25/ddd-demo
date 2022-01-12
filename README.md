@@ -12,9 +12,9 @@
 
 <img src="https://gitee.com/louyanfeng25/baiyan-imag-host/raw/master/img/WechatIMG6.jpeg" alt="WechatIMG6" style="zoom:50%;" />
 
-- **微信号：**baiyan_lou
-- **微信公众号：**柏炎大叔
-- **[掘金](https://juejin.cn/user/4089838987914456?utm_source=gold_browser_extension)**
+- 微信号：`baiyan_lou`
+- 微信公众号：`柏炎大叔`
+- [掘金](https://juejin.cn/user/4089838987914456?utm_source=gold_browser_extension)
 
 
 
