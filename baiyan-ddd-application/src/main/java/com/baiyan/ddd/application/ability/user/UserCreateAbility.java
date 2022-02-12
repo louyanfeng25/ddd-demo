@@ -65,14 +65,14 @@ public class UserCreateAbility extends BaseAbility<CreateUserAbilityCommand, Voi
     public Result<Void> execute(CreateUserAbilityCommand command) {
 
         //工厂创建用户
-        User user = command.toUser(command);
+        User user = command.toUser();
 
         //执行用户新增相关业务逻辑
         user.printCreate();
 
         //仅仅为了演示领域服务使用，这没必要这么做，能力点已经是一个比较原子的业务逻辑点了
         //理论上有了能力层之后直接可以砍掉领域服务层
-        List<Role> roles = (List<Role>)AbilityContext.getValue(ROLE_INFO_KEY);
+        List<Role> roles = AbilityContext.getValue(ROLE_INFO_KEY);
         userDomainService.printTag(user, roles);
 
         //存储用户

@@ -77,19 +77,18 @@ public class CreateUserAbilityCommand implements Command {
      *
      * 如果逻辑复杂，command参数进来需要做一些比较复杂的逻辑处理，则使用工厂类
      *
-     * @param command
      * @return
      */
-    public User toUser(CreateUserAbilityCommand command){
+    public User toUser(){
         User user = User.builder()
-                .userName(command.getUserName())
-                .realName(command.getRealName())
-                .phone(command.getPhone())
-                .password(command.getPassword())
+                .userName(this.userName)
+                .realName(this.realName)
+                .phone(this.phone)
+                .password(this.password)
                 .build();
-        user.bindUnit(command.getUnitId());
-        user.bindRole(command.getRoles());
-        user.bindAddress(command.getProvince(),command.getCity(),command.getCounty());
+        user.bindUnit(this.unitId);
+        user.bindRole(this.roles);
+        user.bindAddress(this.province,this.city,this.county);
         return user;
     }
 }
