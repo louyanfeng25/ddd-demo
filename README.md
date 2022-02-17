@@ -1,16 +1,8 @@
-<img src="https://gitee.com/louyanfeng25/baiyan-imag-host/raw/master/img/RStvVubixo.jpg" alt="RStvVubixo" style="zoom:50%;" />
-
-
-
 本项目是为了适配[掘金小册：《深入浅出DDD》](https://juejin.cn/book/7049273428938850307)讲解的演示项目。
 
 为了能够更好的理解Demo中的分层与逻辑处理，我强烈建议你配合小册来深入了解DDD。
 
 你可以通过以下方式联系我，进入DDD讨论群
-
-- **微信二维码**
-
-<img src="https://gitee.com/louyanfeng25/baiyan-imag-host/raw/master/img/WechatIMG6.jpeg" alt="WechatIMG6" style="zoom:50%;" />
 
 - 微信号：`baiyan_lou`
 - 微信公众号：`柏炎大叔`
